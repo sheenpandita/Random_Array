@@ -1,0 +1,44 @@
+import numpy as np
+import pandas as pd
+
+#function for part 3
+def distancesum (M,N, n):
+    sum = 0
+     
+    # for each point, finding distance
+    # to rest of the point
+    for i in range(n):
+        for j in range(i+1,n):
+            sum += (abs(M[i] - M[j]) + abs(N[i] - N[j]))
+     
+    return sum
+ 
+
+row_name1 =['a', 'b', 'c','d','e','f','g','h','i','j']
+row_name2 =['q','r','s','t','u','v','w','M','y','z']
+#array definition
+rows, cols = (20, 3)
+arr = [[1]*cols]*rows
+
+#print(arr)
+M , N = np.array_split(arr, 2)
+Malpha = np.reshape(M,(3,10))
+#naming rows alphabetically with values
+printM = pd.DataFrame(Malpha,columns=row_name1)
+print("\n M")
+print(printM)
+Nalpha = np.reshape(N,(3,10))
+printN = pd.DataFrame(Nalpha,columns=row_name2)
+print("\n N")
+print(printN)
+#  sorted lists
+resM = sorted(printM, key=lambda M: (len(M), 3))
+print(resM)
+resN = sorted(printN, key=lambda N: (len(N), 3))
+print(resN)
+
+#calculating avg distance
+
+n = len(M)
+print(distancesum(M,N, n) )
+    
